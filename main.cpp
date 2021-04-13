@@ -1,7 +1,3 @@
-//Dantuluri Sairaju - 2018A7PS0306H
-//Nitin Gopala Krishna Sontineni - 2018A7PS0262H
-//Dinesh Nandyala - 2018A7PS0431H
-//Charan Duggina - 2018A7PS0486H
 #include "measure/measure.cpp"
 #include "contour/contour.cpp"
 #include <chrono>
