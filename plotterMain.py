@@ -1,16 +1,17 @@
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
+import random
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
 
 
-def plotterFunc(x_left, x_right, y_bottom, y_top,p):
+def plotterFunc(x_left, x_right, y_bottom, y_top,p,color):
     low = (x_left, y_bottom)
-
+    
     rect1 = matplotlib.patches.Rectangle(low, abs(x_right - x_left), abs(y_top - y_bottom),
-                                         edgecolor='black', facecolor="none")
+                                         edgecolor=color, facecolor="none")
 
     ax.add_patch(rect1)
 
@@ -20,12 +21,12 @@ def plotterFunc(x_left, x_right, y_bottom, y_top,p):
 def horizontalPlotter(a,b,c):
     x=[list[1],list[2]]
     y=[list[0],list[0]]
-    plt.plot(x,y,"r")
+    plt.plot(x,y,"b")
 
 def verticalPlotter(a,b,c):
     x=[list[0],list[0]]
     y=[list[1],list[2]]
-    plt.plot(x,y,"r")
+    plt.plot(x,y,"b")
 
 
 
@@ -36,7 +37,12 @@ for line in lines:
     list=line.split(',')
     for i in range(len(list)):
         list[i]=int(list[i])
-    plotterFunc(int(list[0]),int(list[1]),int(list[2]),int(list[3]),max(list))
+    r = random.random()
+    b = random.random()
+    g = random.random()
+    color = (r, g, b)
+    plotterFunc(int(list[0]),int(list[1]),int(list[2]),int(list[3]),max(list),color)
+plt.show()
 
 h=open("horizontal.txt","r")
 lines=h.readlines()

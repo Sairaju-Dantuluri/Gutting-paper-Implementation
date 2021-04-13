@@ -4,12 +4,15 @@
 //Charan Duggina - 2018A7PS0486H
 #include "measure/measure.cpp"
 #include "contour/contour.cpp"
+#include <chrono>
 #include <iostream>
 #include <fstream>
 using namespace std;
+using namespace std::chrono;
 
 int main()
 {
+	
 	fstream input_file;
 	input_file.open("input.txt", ios::out);
 	if(!input_file)
@@ -33,11 +36,13 @@ int main()
 		input_file << a <<","<< b <<","<< c <<","<< d <<"\n";
 	}
 	input_file.close();
+	auto start = high_resolution_clock::now();
 	int area = measure(Recm);
 	vector<LineSegment> ls,vs;
-	Contour(Rec,ls,vs);
+	int cont = Contour(Rec,ls,vs);
+	auto stop = high_resolution_clock::now();
 	cout << "area : " << area << "\n";
-	
+	cout << "contour : " << cont << "\n";
 	fstream file_hori,file_verti;
 	file_hori.open("horizontal.txt", ios::out);
 	if (!file_hori) {
@@ -62,6 +67,9 @@ int main()
 		}
 		file_verti.close();
 	}
+	
+	auto duration = duration_cast<milliseconds>(stop - start);
+	cout << duration.count() << "ms"<< endl << "\n";
 	return 0;
 }
 

@@ -161,11 +161,11 @@ vector<LineSegment> fillgaps(vector<LineSegment> ls)
 }
 
 
-void Contour(vector<Rectangle> R,vector<LineSegment> &ls,vector<LineSegment> &vs)
+int Contour(vector<Rectangle> R,vector<LineSegment> &ls,vector<LineSegment> &vs)
 {
 	if(R.size() == 0)
 	{
-		return;
+		return 0;
 	}
 	vector<Stripe> S = Rectangle_dac(R);
 	vector<LineSegment> ls1,ls2;
@@ -195,4 +195,14 @@ void Contour(vector<Rectangle> R,vector<LineSegment> &ls,vector<LineSegment> &vs
 	ls = litUnionls(ls);
 	if(ls.size()!=0)
 		vs = fillgaps(ls);
+	int cont=0;
+	for(int i=0;i<ls.size();i++)
+	{
+		cont+=(ls[i].intv.top-ls[i].intv.bottom);
+	}
+	for(int i=0;i<vs.size();i++)
+	{
+		cont+=(vs[i].intv.top-vs[i].intv.bottom);
+	}
+	return cont;
 }

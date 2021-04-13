@@ -41,7 +41,7 @@ void blackenm(vector<Stripem> &S,vector<Intervalm> J)
 {
 	for(int i=0;i<S.size();i++)
 	{
-		for(int j=0;j<J.size();j++)  //Need to optimize
+		for(int j=0;j<J.size();j++)
 		{
 			if(S[i].y_interval.top <= J[j].top && S[i].y_interval.bottom >= J[j].bottom)
 			{
